@@ -66,7 +66,7 @@ motifStack <-function(pfms,
         stop("length of pfms less than 2")
     if (length(pfms)==2){
       if(pfms[[1]]@alphabet %in% c("DNA", "RNA")) {
-        pfms <- DNAmotifAlignment(pfms)
+        pfms <- DNAmotifAlignment(pfms, revcomp=rep(TRUE, length(pfms)))
       }else{
         if(pfms[[1]]@alphabet %in% c("AA") && layout!="stack"){
           pfms <- AAmotifAlignment(pfms)
@@ -83,7 +83,7 @@ motifStack <-function(pfms,
         hc <- clusterMotifs(pfms)
         pfms <- pfms[hc$order]
         if(pfms[[1]]@alphabet %in% c("DNA", "RNA")) {
-          pfms <- DNAmotifAlignment(pfms)
+          pfms <- DNAmotifAlignment(pfms, revcomp=rep(TRUE, length(pfms)))
         }else{
           if(pfms[[1]]@alphabet %in% c("AA") && layout!="stack"){
             pfms <- AAmotifAlignment(pfms)
